@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-import firebase from './firebase'
+import NewComment from './NewComment'
+import Comments from './Comments'
 
-const Comments = () => {
-  const [data, setData] = useState({})
+import { useDatabasePush } from './database'
+/*
+firebase
+  .auth()
+  .createUserWithEmailAndPassword('renato@alfavoice.com.br', 'k0bain')
+  .then(user => {
+    //return user.update
+  })
 
-  useEffect(() => {
-    const ref = firebase.database().ref('test')
-    ref.on('value', snapshot => {
-      setData(snapshot.val())
-    })
-    return () => {
-      ref.off()
+firebase
+  .auth()
+  .onAuthStateChanged(user => {
+    if (user) {
+      console.log(user.displayName)
+      user.updateProfile({ displayName: 'Renato Siqueira' })
     }
-  }, [])
-
-  return (
-    <pre>{JSON.stringify(data)}</pre>
-  )
-}
+  })
+*/
 
 function App() {
-  const [visible, toggle] = useState(true)
-
+  const [, save] = useDatabasePush('comments')
   return (
     <div>
-      {
-        visible &&
-        <Comments />
-      }
-      <button onClick={() => toggle(!visible)}>Toggle Comments</button>
+      <NewComment />
+      <Comments />
     </div>
   )
 }
