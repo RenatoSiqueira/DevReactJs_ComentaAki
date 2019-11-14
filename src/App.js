@@ -4,6 +4,8 @@ import NewComment from './NewComment'
 import Comments from './Comments'
 
 import { useDatabasePush } from './database'
+import { AuthContext } from './auth'
+
 /*
 firebase
   .auth()
@@ -25,14 +27,16 @@ firebase
 function App() {
   //const [, save] = useDatabasePush('comments')
   return (
-    <div className='container'>
-      <div className='row mt-5'>
-        <div className='col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded'>
-          <Comments />
-          <NewComment />
+    <AuthContext.Provider value={}>
+      <div className='container'>
+        <div className='row mt-5'>
+          <div className='col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded'>
+            <Comments />
+            <NewComment />
+          </div>
         </div>
       </div>
-    </div>
+    </AuthContext.Provider>
   )
 }
 
