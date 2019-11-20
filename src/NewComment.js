@@ -5,11 +5,13 @@ import firebase from './firebase'
 const NewComment = props => {
     const [, save] = useDatabasePush('comments')
     const [comment, setComment] = useState('')
+    const date = new Date()
 
     const createComment = () => {
+        //firebase.database.ServerValue.TIMESTAMP
         save({
             content: comment,
-            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            createdAt: date.toLocaleDateString(),
             user: {
                 id: 1,
                 name: 'Renato'
