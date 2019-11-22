@@ -1,20 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useDatabasePush } from './database'
+import { AuthContext } from './auth'
 import firebase from './firebase'
 
-const NewComment = props => {
+import UserInfo from './UserInfo'
+
+const NewComment = () => {
     const [, save] = useDatabasePush('comments')
     const [comment, setComment] = useState('')
-    const date = new Date()
+    const auth = useContext(AuthContext)
+
+    if (auth.user === null) {
+        return null
+    }
+
+    const { uid, displayName } = auth.user
+    const [alternativeDisplayName] = auth.user.email.split('@')
 
     const createComment = () => {
-        //firebase.database.ServerValue.TIMESTAMP
         save({
             content: comment,
-            createdAt: date.toLocaleDateString(),
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
             user: {
-                id: 1,
-                name: 'Renato'
+                id: uid,
+                name: displayName || alternativeDisplayName
             }
         })
         setComment('')
@@ -23,6 +32,7 @@ const NewComment = props => {
     return (
         <div className='row comment-box-main p-3 rounded-bottom'>
             <div className='col-md-9 col-sm-9 col-9 pr-0 comment-box'>
+                <UserInfo />
                 <input
                     type='text'
                     className='form-control'

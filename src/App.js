@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import NewComment from './NewComment'
 import Comments from './Comments'
 import CreateUser from './CreateUser'
+import SignInUser from './SignInUser'
+import UserInfo from './UserInfo'
 
-import { useDatabasePush } from './database'
+
 import { AuthProvider } from './auth'
 
 function App() {
-  //const [, save] = useDatabasePush('comments')
   return (
     <AuthProvider>
       <div className='container'>
@@ -17,6 +18,7 @@ function App() {
             <Comments />
             <NewComment />
             <CreateUser />
+            <SignInUser />
           </div>
         </div>
       </div>
