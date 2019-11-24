@@ -32,9 +32,9 @@ const UserInfo = () => {
 
     return (
         <>
-            <p> Olá {dn}!</p>
-            <FormDisplayName displayName={dn} user={auth.user} />
-            <button onClick={auth.signout}>Sair</button>
+            <p> <strong>Usuário:</strong> {dn}!</p>
+            { /*<FormDisplayName displayName={dn} user={auth.user} /> */}
+            <button className='btn btn-warning' onClick={auth.signout}>Deslogar</button>
         </>
     )
 }
