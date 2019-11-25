@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import NewComment from './NewComment'
 import Comments from './Comments'
+import UserInfo from './UserInfo'
 import CreateUser from './CreateUser'
 import SignInUser from './SignInUser'
 
@@ -25,6 +26,7 @@ function App() {
                 !stateVisible.createUser &&
                 <SignInUser state={stateVisible} setState={setStateVisible} />
               }
+              <UserInfo />
             </div>
           </div>
         </div>

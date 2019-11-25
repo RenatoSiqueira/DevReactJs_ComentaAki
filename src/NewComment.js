@@ -3,8 +3,6 @@ import { useDatabasePush } from './database'
 import { AuthContext } from './auth'
 import firebase from './firebase'
 
-import UserInfo from './UserInfo'
-
 const NewComment = () => {
     const [, save] = useDatabasePush('comments')
     const [comment, setComment] = useState('')
@@ -32,7 +30,6 @@ const NewComment = () => {
     return (
         <div className='row comment-box-main p-3 rounded-bottom'>
             <div className='col-md-9 col-sm-9 col-9 pr-0 comment-box'>
-                <UserInfo />
                 <input
                     type='text'
                     className='form-control'

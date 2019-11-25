@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { AuthContext } from './auth'
 
-const FormDisplayName = ({ DisplayName, user }) => {
-    const [newDisplayName, setNewDisplayName] = useState(DisplayName)
+const FormDisplayName = ({ displayName, user }) => {
+    const [newDisplayName, setNewDisplayName] = useState(displayName)
     const onChange = evt => {
         setNewDisplayName(evt.target.value)
     }
@@ -13,8 +13,9 @@ const FormDisplayName = ({ DisplayName, user }) => {
     }
     return (
         <>
+            <p style={{ color: '#fff' }}>Logado como <strong>{displayName}.</strong></p>
             <input className='form-control' type='text' value={newDisplayName} onChange={onChange} />
-            <button className='btn btn-info' onClick={save}>Save Display Name</button>
+            <button className='btn btn-info btn-block separator' onClick={save}>Trocar Nome</button>
         </>
     )
 }
@@ -32,9 +33,10 @@ const UserInfo = () => {
 
     return (
         <>
-            <p> <strong>Usuário:</strong> {dn}!</p>
-            { /*<FormDisplayName displayName={dn} user={auth.user} /> */}
-            <button className='btn btn-warning' onClick={auth.signout}>Deslogar</button>
+            <div className='col-md-12 col-sm-12 col-12 pr-0 comment-box'>
+                <FormDisplayName displayName={dn} user={auth.user} />
+                <button className='btn btn-warning btn-block' onClick={auth.signout}>Deslogar</button>
+            </div>
         </>
     )
 }
