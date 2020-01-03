@@ -51,6 +51,7 @@ const useSignInUser = () => {
         success: ''
     })
     const signInUser = (email, passwd) => {
+        setState({ error: '' }) // <-- adicionei aqui
         firebase
             .auth()
             .signInWithEmailAndPassword(email, passwd)
